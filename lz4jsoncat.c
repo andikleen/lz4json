@@ -27,10 +27,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <endian.h>
 
 #include "lz4.h"
-
-/* Assumes little endian host for the length */
 
 int main(int ac, char **av)
 {
@@ -61,7 +60,7 @@ int main(int ac, char **av)
 			fprintf(stderr, "%s: not a mozLZ4a file\n", *av);
 			exit(1);
 		}
-		size_t outsz = *(uint32_t *) (map + 8);
+		size_t outsz = htole32(*(uint32_t *) (map + 8));
 		char *out = malloc(outsz);
 		if (!out) {
 			fprintf(stderr, "Cannot allocate memory\n");
