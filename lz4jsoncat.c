@@ -17,7 +17,7 @@
  */
 
 /* File format reference:
-   http://mxr.mozilla.org/mozilla-central/source/toolkit/components/workerlz4/lz4.js 
+   https://dxr.mozilla.org/mozilla-central/source/toolkit/components/lz4/lz4.js
  */
 #include <sys/mman.h>
 #include <sys/stat.h>
