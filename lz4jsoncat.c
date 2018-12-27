@@ -51,9 +51,7 @@ int main(int ac, char **av)
 			exit(1);
 		}
 
-		unsigned ps = sysconf(_SC_PAGE_SIZE);
-		char *map = mmap(NULL, (st.st_size + ps - 1) & ~(ps - 1), PROT_READ,
-				 MAP_SHARED, fd, 0);
+		char *map = mmap(NULL, st.st_size, PROT_READ, MAP_SHARED, fd, 0);
 		if (map == (char *)-1) {
 			perror(*av);
 			exit(1);
@@ -80,7 +78,7 @@ int main(int ac, char **av)
 			exit(1);
 		}
 		free(out);
-		munmap(map, (st.st_size + ps - 1) & ~(ps - 1));
+		munmap(map, st.st_size);
 		close(fd);
 
 	}
