@@ -19,6 +19,7 @@
 /* File format reference:
    http://mxr.mozilla.org/mozilla-central/source/toolkit/components/workerlz4/lz4.js 
  */
+#include <errno.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sys/fcntl.h>
@@ -71,7 +72,10 @@ int main(int ac, char **av)
 			fprintf(stderr, "%s: decompression error\n", *av);
 			exit(1);
 		}
-		if (write(1, out, outsz) < outsz) {
+		ssize_t decsz = write(1, out, outsz);
+		if (decsz < 0 || decsz != outsz) {
+			if (decsz >= 0)
+				errno = EIO;
 			perror("write");
 			exit(1);
 		}
