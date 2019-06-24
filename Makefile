@@ -1,5 +1,6 @@
+PKG_CONFIG ?= pkg-config
 CFLAGS := -g -O2 -Wall
-LDLIBS := $(shell pkg-config --cflags --libs liblz4)
+LDLIBS := $(shell $(PKG_CONFIG) --cflags --libs liblz4)
 
 lz4jsoncat: lz4jsoncat.c
 
