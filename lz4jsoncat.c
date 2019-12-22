@@ -28,7 +28,17 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+
+#ifdef __APPLE__
+
+#include <libkern/OSByteOrder.h>
+#define htole32(x) OSSwapHostToLittleInt32(x)
+
+#else /* !__APPLE__ */
+
 #include <endian.h>
+
+#endif /* __APPLE__ */
 
 #include "lz4.h"
 
