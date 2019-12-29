@@ -28,10 +28,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
-#ifdef __linux__
+#ifndef __APPLE__
 #include <endian.h>
 #else
-#define htole32(x) x /* assume non linux targets are little endian */
+#define htole32(x) x /* assume apple targets are little endian */
 #endif
 
 #include "lz4.h"
