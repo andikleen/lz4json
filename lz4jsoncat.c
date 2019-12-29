@@ -28,7 +28,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#ifdef __linux__
 #include <endian.h>
+#else
+#define htole32(x) x /* assume non linux targets are little endian */
+#endif
 
 #include "lz4.h"
 
