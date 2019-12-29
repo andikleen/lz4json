@@ -6,4 +6,12 @@ Requires liblz4 (Debian package liblz4-dev, Fedora package lz4-devel) to be inst
 
 lz4jsoncat ~/.mozilla/.../bookmarkbackups/bookmarks-2014-12-27_151_0UCIWGB4x3hhQXpuSMs5WQ==.jsonlz4 
 
+On some non Linux systems the lz libraries might be installed into directories
+that are not searched by the linker by default. If that's the case
+please override the CFLAGS and LDFLAGS on the command line
+
+e.g. if they are in /usr/local:
+
+make CFLAGS="-I/usr/local/include -O2" LDFLAGS="-L/usr/local/lib"
+
 -Andi Kleen
