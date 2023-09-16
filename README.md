@@ -25,18 +25,21 @@ $ make CFLAGS="-I/usr/local/include -O2" LDFLAGS="-L/usr/local/lib"
 
 ## Installation
 
-To install to a custom prefix, run:
-
-```bash
-PREFIX=/usr/local/ make install
-```
-
-Otherwise, to install to `bin/`, run:
+For a default installation, run:
 
 ```bash
 $ make install
 ```
 
-## Author
+If you hit permission errors, try running the command with `sudo`.
 
-Andi Kleen
+To install to a custom prefix, run:
+
+```bash
+PREFIX=/your/custom_prefix_here make install
+```
+
+## Contributors
+
+- [Andi Kleen](https://github.com/andikleen)
+- [Aaron Lichtman](https://github.com/alichtman)
