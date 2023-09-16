@@ -7,10 +7,12 @@ bindir ?= ${PREFIX}bin/
 mandir ?= ${PREFIX}man/
 libdir ?= ${PREFIX}lib/
 
+all: lz4jsoncat liblz4json.so
+
 lz4jsoncat: lz4jsoncat.c
 
 liblz4json.so:
-	$(CC) $(CFLAGS) -fPIC -shared -o $@ $^ $(LDLIBS)
+	$(CC) $(CFLAGS) -fPIC -shared -g -o $@ lz4jsoncat.c $(LDLIBS)
 
 install: lz4jsoncat liblz4json.so
 	mkdir -p ${bindir} ${mandir}
@@ -21,7 +23,7 @@ install: lz4jsoncat liblz4json.so
 clean:
 	@# The @ suppresses output. Without the @ before the for loop, the entire bash block is printed to stdout. And it's apparently required for comments too.
 	@# lz4jsoncat.dSYM is generated on macOS machines
-	@for file in lz4jsoncat lz4json.so lz4jsoncat.*dSYM bin; do \
+	@for file in lz4jsoncat liblz4json.so lz4jsoncat.dSYM liblz4json.so.dSYM bin; do \
 		rm -rf "$$file"; \
 	done
 
